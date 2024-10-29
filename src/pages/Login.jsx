@@ -4,16 +4,20 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 function Login() {
   const [loading, setLoading] = useState(false);
-
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    const [email, password] = e.target;
+    const [codigo, documento, password] = e.target;
 
-    if (!email.value) {
-      toast.error('El correo es obligatorio');
+    if (!codigo.value) {
+      toast.error('El código es obligatorio');
+      setLoading(false);
+      return;
+    }
+    if (!documento.value) {
+      toast.error('El documento es obligatorio');
       setLoading(false);
       return;
     }
@@ -27,8 +31,6 @@ function Login() {
       setLoading(false);
       navigate('/');
     }, 3000);
-
-    // const response = fetch('asdasd').then(e=>e.json()).then(res=> );
   };
 
   return (
@@ -54,9 +56,10 @@ function Login() {
       >
         <h1 style={{ margin: '8px 0' }}>Formulario de ingreso</h1>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+          
           <div>
-            <label style={{ display: 'block' }} htmlFor="">
-              Correo electronico
+            <label style={{ display: 'block' }} htmlFor="codigo">
+              Código
             </label>
             <input
               style={{
@@ -64,13 +67,30 @@ function Login() {
                 display: 'block',
                 width: '-webkit-fill-available',
               }}
-              placeholder="tucorreo@gmail.com"
-              type="email"
+              placeholder="Ingrese su código"
+              type="text"
+              id="codigo"
+            />
+          </div>
+          
+          <div>
+            <label style={{ display: 'block' }} htmlFor="documento">
+              Documento
+            </label>
+            <input
+              style={{
+                padding: '8px 16px',
+                display: 'block',
+                width: '-webkit-fill-available',
+              }}
+              placeholder="Ingrese su documento"
+              type="text"
+              id="documento"
             />
           </div>
 
           <div>
-            <label style={{ display: 'block' }} htmlFor="">
+            <label style={{ display: 'block' }} htmlFor="password">
               Contraseña
             </label>
             <input
@@ -81,8 +101,10 @@ function Login() {
               }}
               placeholder="*******"
               type="password"
+              id="password"
             />
           </div>
+
           <input
             style={{
               width: '50%',
