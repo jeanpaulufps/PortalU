@@ -1,12 +1,20 @@
-import { FORMULARIO } from './components/Formulario';
-import { useState } from 'react';
+import { Route, Router, Routes } from 'react-router-dom';
+import Login from './pages/Login';
+import NotFound from './pages/NotFound';
+import Home from './pages/Home';
+import Profile from './pages/Profile';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
-  const [user, setUser] = useState([]);
-
   return (
     <>
-      {user.length > 0 ? <h1>Hola, {user[0]}</h1> : <FORMULARIO setUser={setUser} />}
+      <Routes>
+        <Route path="/login" Component={Login}></Route>
+        <Route path="/" Component={Home}></Route>
+        <Route path="/profile" Component={Profile}></Route>
+        <Route path="*" Component={NotFound}></Route>
+      </Routes>
+      <Toaster></Toaster>
     </>
   );
 }
