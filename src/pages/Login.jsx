@@ -124,7 +124,7 @@ function Login() {
           />
           <div style={{ textAlign: 'center', marginTop: '10px' }}>
             <Link to="/RecuperarContraseña" style={{ color: '#4e3f86' }}>
-              Recuperar contraseña
+              ¿Haz olvidado tu contraseña?
             </Link>
           </div>
 

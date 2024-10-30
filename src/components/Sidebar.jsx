@@ -37,7 +37,7 @@ function Sidebar() {
             </Link>
           </li>
           <li>
-            <Link className="sidebar-link">@ Informacion estudiantil</Link>
+            <Link to="/InclusionMaterias"className="sidebar-link">Matricular Materias</Link>
           </li>
           <li>
             <Link className="sidebar-link">@ Informacion estudiantil</Link>
