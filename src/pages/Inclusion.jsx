@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Segment from '../components/Segment';
 import MainLayout from '../layouts/MainLayout';
 
-const InclusionMaterias = () => {
+const Inclusion = () => {
   const materias = [
     { codigo: '1155405', nombre: 'TEORÍA DE LA COMPUTACIÓN', horario: 'Mi. 10-12 / Ju. 10-11', creditos: 3, grupo: '1155405-B', cupos: 20 },
     { codigo: '1155504', nombre: 'ARQUITECTURA DE COMPUTADORES', horario: 'Mi. 06-07 / Ju. 06-08', creditos: 3, grupo: '1155504-B', cupos: 15 },
@@ -94,4 +94,4 @@ const InclusionMaterias = () => {
   );
 }
 
-export default InclusionMaterias;
+export default Inclusion;

@@ -33,14 +33,23 @@ function Sidebar() {
         <ul>
           <li>
             <Link to="/profile" className="sidebar-link">
-              @ Perfil estudiantil
+              <img src="./profile.svg" alt="" /> Perfil estudiantil
             </Link>
           </li>
           <li>
-            <Link to="/InclusionMaterias"className="sidebar-link">Matricular Materias</Link>
+            <Link to="/subjects" className="sidebar-link">
+              Materias
+            </Link>
           </li>
           <li>
-            <Link to="/HorarioClases"className="sidebar-link">Horario de clases</Link>
+            <Link to="/subjects" className="sidebar-link">
+              Inclusion Materias
+            </Link>
+          </li>
+          <li>
+            <Link to="/HorarioClases" className="sidebar-link">
+              Horario de clases
+            </Link>
           </li>
         </ul>
       </nav>
