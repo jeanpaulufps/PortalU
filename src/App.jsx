@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Profile from './pages/Profile';
 import RecuperarContraseña from './pages/RecuperarContraseña';
 import InclusionMaterias from './pages/InclusionMaterias';
+import HorarioClases from './pages/HorarioClases';
 import { Toaster } from 'react-hot-toast';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/profile" Component={Profile}></Route>
         <Route path="/RecuperarContraseña" Component={RecuperarContraseña}></Route>
         <Route path="/InclusionMaterias" Component={InclusionMaterias}></Route>
+        <Route path="/HorarioClases" Component={HorarioClases}></Route>
         <Route path="*" Component={NotFound}></Route>
       </Routes>
       <Toaster></Toaster>

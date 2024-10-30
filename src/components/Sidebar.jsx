@@ -40,7 +40,7 @@ function Sidebar() {
             <Link to="/InclusionMaterias"className="sidebar-link">Matricular Materias</Link>
           </li>
           <li>
-            <Link className="sidebar-link">@ Informacion estudiantil</Link>
+            <Link to="/HorarioClases"className="sidebar-link">Horario de clases</Link>
           </li>
         </ul>
       </nav>
