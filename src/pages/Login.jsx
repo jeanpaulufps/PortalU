@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState } from 'react'; 
 import toast from 'react-hot-toast';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Login() {
   const [loading, setLoading] = useState(false);
@@ -54,7 +54,9 @@ function Login() {
           borderRadius: 8,
         }}
       >
-        <h1 style={{ margin: '8px 0' }}>Formulario de ingreso</h1>
+        <h1 style={{ margin: '8px 0', width: '250px', textAlign: 'center' }}>
+          AdminU
+        </h1>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           
           <div>
@@ -91,7 +93,7 @@ function Login() {
 
           <div>
             <label style={{ display: 'block' }} htmlFor="password">
-              Contraseña
+              Contraseña  
             </label>
             <input
               style={{
@@ -120,6 +122,12 @@ function Login() {
             type="submit"
             value="Ingresar"
           />
+          <div style={{ textAlign: 'center', marginTop: '10px' }}>
+            <Link to="/RecuperarContraseña" style={{ color: '#4e3f86' }}>
+              Recuperar contraseña
+            </Link>
+          </div>
+
         </div>
       </form>
     </div>
