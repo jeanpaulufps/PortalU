@@ -1,4 +1,4 @@
-import { useState } from 'react'; 
+import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -27,10 +27,22 @@ function Login() {
       return;
     }
 
-    setTimeout(() => {
-      setLoading(false);
-      navigate('/');
-    }, 3000);
+    const formData = new FormData();
+    formData.set('codigo', codigo.value);
+    formData.set('numeroDocumento', documento.value);
+    formData.set('password', password.value);
+
+    fetch('http://localhost:8000/api/login/', {
+      method: 'POST',
+      body: formData,
+    })
+      .then((e) => e.json())
+      .then((data) => {
+        setLoading(false);
+        navigate('/');
+      })
+      .catch(() => toast.error('Credenciales invalidas'))
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -58,7 +70,6 @@ function Login() {
           AdminU
         </h1>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-          
           <div>
             <label style={{ display: 'block' }} htmlFor="codigo">
               Código
@@ -74,7 +85,7 @@ function Login() {
               id="codigo"
             />
           </div>
-          
+
           <div>
             <label style={{ display: 'block' }} htmlFor="documento">
               Documento
@@ -93,7 +104,7 @@ function Login() {
 
           <div>
             <label style={{ display: 'block' }} htmlFor="password">
-              Contraseña  
+              Contraseña
             </label>
             <input
               style={{
@@ -127,7 +138,6 @@ function Login() {
               ¿Haz olvidado tu contraseña?
             </Link>
           </div>
-
         </div>
       </form>
     </div>
