@@ -28,7 +28,6 @@ function Header() {
       >
         ESTUDIANTES
       </Link>
-
       <div>
         <button
           style={{

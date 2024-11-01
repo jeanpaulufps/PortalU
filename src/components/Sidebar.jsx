@@ -42,12 +42,12 @@ function Sidebar() {
             </Link>
           </li>
           <li>
-            <Link to="/subjects" className="sidebar-link">
+            <Link to="/inclusion-materias" className="sidebar-link">
               Inclusion Materias
             </Link>
           </li>
           <li>
-            <Link to="/HorarioClases" className="sidebar-link">
+            <Link to="/horario-clases" className="sidebar-link">
               Horario de clases
             </Link>
           </li>
