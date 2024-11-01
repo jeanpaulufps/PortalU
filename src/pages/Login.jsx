@@ -1,48 +1,36 @@
-import { useState } from 'react';
+import { useContext, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthProvider';
 
 function Login() {
-  const [loading, setLoading] = useState(false);
+  const { login, loading, user } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
     const [codigo, documento, password] = e.target;
 
     if (!codigo.value) {
       toast.error('El código es obligatorio');
-      setLoading(false);
       return;
     }
     if (!documento.value) {
       toast.error('El documento es obligatorio');
-      setLoading(false);
       return;
     }
     if (!password.value) {
       toast.error('La contraseña es obligatoria');
-      setLoading(false);
       return;
     }
 
-    const formData = new FormData();
-    formData.set('codigo', codigo.value);
-    formData.set('numeroDocumento', documento.value);
-    formData.set('password', password.value);
-
-    fetch('http://localhost:8000/api/login/', {
-      method: 'POST',
-      body: formData,
-    })
-      .then((e) => e.json())
-      .then((data) => {
-        setLoading(false);
-        navigate('/');
-      })
-      .catch(() => toast.error('Credenciales invalidas'))
-      .finally(() => setLoading(false));
+    login(codigo.value, documento.value, password.value);
   };
 
   return (

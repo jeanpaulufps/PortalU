@@ -1,6 +1,10 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../context/AuthProvider';
 
 function Header() {
+  const { logout } = useContext(AuthContext);
+
   return (
     <header
       style={{
@@ -62,6 +66,7 @@ function Header() {
             border: 'none',
             cursor: 'pointer',
           }}
+          onClick={logout}
         >
           Cerrar sesión
         </button>

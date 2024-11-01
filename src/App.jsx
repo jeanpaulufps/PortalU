@@ -8,23 +8,36 @@ import Subjects from './pages/Subjects';
 import HorarioClases from './pages/HorarioClases';
 import { Toaster } from 'react-hot-toast';
 import Inclusion from './pages/Inclusion';
+import { AuthProvider } from './context/AuthProvider';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
+  const routes = [
+    { path: '/', element: <Home /> },
+    { path: '/profile', element: <Profile /> },
+    { path: '/subjects', element: <Subjects /> },
+    { path: '/inclusion-materias', element: <Inclusion /> },
+    { path: '/horario-clases', element: <HorarioClases /> },
+  ];
+
   return (
     <>
-      <Routes>
-        <Route path="/login" Component={Login}></Route>
-        <Route path="/" Component={Home}></Route>
-        <Route path="/profile" Component={Profile}></Route>
-        <Route
-          path="/RecuperarContraseña"
-          Component={RecuperarContraseña}
-        ></Route>
-        <Route path="/subjects" Component={Subjects}></Route>
-        <Route path="/inclusion" Component={Inclusion}></Route>
-        <Route path="/HorarioClases" Component={HorarioClases}></Route>
-        <Route path="*" Component={NotFound}></Route>
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path="/login" Component={Login}></Route>
+          <Route path="/reset-password" Component={RecuperarContraseña}></Route>
+
+          {routes.map((route) => (
+            <Route
+              key={route.path}
+              path={route.path}
+              element={<PrivateRoute>{route.element}</PrivateRoute>}
+            />
+          ))}
+
+          <Route path="*" Component={NotFound}></Route>
+        </Routes>
+      </AuthProvider>
       <Toaster></Toaster>
     </>
   );

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Segment from '../components/Segment';
 import MainLayout from '../layouts/MainLayout';
 import { getAverage } from '../helpers';
