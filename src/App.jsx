@@ -3,7 +3,8 @@ import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
-import RecuperarContraseña from './pages/RecuperarContraseña';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 import Subjects from './pages/Subjects';
 import HorarioClases from './pages/HorarioClases';
 import { Toaster } from 'react-hot-toast';
@@ -16,7 +17,7 @@ function App() {
     { path: '/', element: <Home /> },
     { path: '/profile', element: <Profile /> },
     { path: '/subjects', element: <Subjects /> },
-    { path: '/inclusion-materias', element: <Inclusion /> },
+    { path: '/inclusion', element: <Inclusion /> },
     { path: '/horario-clases', element: <HorarioClases /> },
   ];
 
@@ -25,7 +26,8 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path="/login" Component={Login}></Route>
-          <Route path="/reset-password" Component={RecuperarContraseña}></Route>
+          <Route path="/forgot-password" Component={ForgotPassword}></Route>
+          <Route path="/reset-password" Component={ResetPassword}></Route>
 
           {routes.map((route) => (
             <Route
