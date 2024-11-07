@@ -6,7 +6,6 @@ import { AuthContext } from '../context/AuthProvider';
 function Login() {
   const { login, loading, user } = useContext(AuthContext);
   const navigate = useNavigate();
-
   useEffect(() => {
     if (user) {
       navigate('/');
@@ -15,6 +14,7 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
     const [codigo, documento, password] = e.target;
 
     if (!codigo.value) {
@@ -122,7 +122,7 @@ function Login() {
             value="Ingresar"
           />
           <div style={{ textAlign: 'center', marginTop: '10px' }}>
-            <Link to="/RecuperarContraseña" style={{ color: '#4e3f86' }}>
+            <Link to="/forgot-password" style={{ color: '#4e3f86' }}>
               ¿Haz olvidado tu contraseña?
             </Link>
           </div>
