@@ -1,27 +1,41 @@
 import { useState } from 'react';
+import toast from 'react-hot-toast';
+import { API_URL } from '../constants';
 
-function RecuperarContrasena() {
+function ForgotPassword() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    setMessage(''); // Limpiar el mensaje anterior
 
     if (!email) {
-      setMessage('El correo es obligatorio');
+      toast.error('El correo electronico es obligatorio');
       setLoading(false);
       return;
     }
 
-    // Simulación de envío de correo
-    setTimeout(() => {
-      setLoading(false);
-      setMessage('Se envió un correo para recuperar su contraseña. Revise su bandeja de entrada.');
-      setEmail(''); // Limpiar el campo de correo después del envío
-    }, 2000);
+    const formData = new FormData();
+    formData.set('correoInstitucional', email);
+
+    fetch(`${API_URL}/password_reset/`, {
+      method: 'POST',
+      body: formData,
+    })
+      .then((response) => {
+        console.log(response);
+
+        if (!response.ok) {
+          return Promise.reject(
+            new Error('Ha ocurrido un error, intentalo más tarde')
+          );
+        }
+        return response.json();
+      })
+      .then((data) => toast.success(data.message, { duration: 10000 }))
+      .catch((e) => toast.error(e.message))
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -49,7 +63,8 @@ function RecuperarContrasena() {
           Recuperar contraseña
         </h1>
         <p style={{ textAlign: 'center', marginBottom: '16px' }}>
-          Introduce tu correo electrónico y te enviaremos un enlace para que vuelvas a entrar en tu cuenta.
+          Introduce tu correo electrónico y te enviaremos un enlace para que
+          vuelvas a entrar en tu cuenta.
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div>
@@ -69,7 +84,7 @@ function RecuperarContrasena() {
               onChange={(e) => setEmail(e.target.value)} // Actualizar el estado cuando cambia el input
             />
           </div>
-          
+
           <input
             style={{
               width: '50%',
@@ -85,17 +100,10 @@ function RecuperarContrasena() {
             type="submit"
             value="Enviar"
           />
-
-          {/* Mensaje de feedback */}
-          {message && (
-            <div style={{ textAlign: 'center', marginTop: '10px', color: loading ? 'grey' : 'green' }}>
-              {message}
-            </div>
-          )}
         </div>
       </form>
     </div>
   );
 }
 
-export default RecuperarContrasena;
+export default ForgotPassword;
