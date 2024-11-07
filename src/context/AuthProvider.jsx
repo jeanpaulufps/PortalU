@@ -13,6 +13,8 @@ export function AuthProvider({ children }) {
   const navigate = useNavigate();
 
   const login = (code, document, password) => {
+    setLoading(true);
+
     const formData = new FormData();
     formData.set('codigo', code);
     formData.set('numeroDocumento', document);
@@ -22,21 +24,30 @@ export function AuthProvider({ children }) {
       method: 'POST',
       body: formData,
     })
-      .then((e) => e.json())
+      .then((resp) => {
+        if (!resp.ok) {
+          return Promise.reject(
+            new Error(`Error ${resp.status}: ${resp.statusText}`)
+          );
+        }
+        return resp.json();
+      })
       .then((data) => {
-        setLoading(false);
         setUser(data.usuario);
+        console.log(data);
         window.localStorage.setItem('user', JSON.stringify(data.usuario));
         navigate('/');
       })
-      .catch(() => toast.error('Credenciales invalidas'))
+      .catch(() => {
+        toast.error('Credenciales invalidas');
+      })
       .finally(() => setLoading(false));
   };
 
   const logout = () => {
     setUser(null);
     window.localStorage.removeItem('user');
-    navigate('/login')
+    navigate('/login');
   };
 
   return (
