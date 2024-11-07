@@ -42,7 +42,7 @@ function Sidebar() {
             </Link>
           </li>
           <li>
-            <Link to="/inclusion-materias" className="sidebar-link">
+            <Link to="/inclusion" className="sidebar-link">
               Inclusion Materias
             </Link>
           </li>

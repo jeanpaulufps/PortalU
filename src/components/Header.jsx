@@ -42,7 +42,8 @@ function Header() {
         >
           Notificaciones
         </button>
-        <button
+        <Link
+          to="/profile"
           style={{
             height: '100%',
             padding: '8px 16px',
@@ -54,7 +55,7 @@ function Header() {
           }}
         >
           Perfil
-        </button>
+        </Link>
         <button
           style={{
             height: '100%',
