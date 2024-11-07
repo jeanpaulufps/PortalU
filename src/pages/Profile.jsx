@@ -13,7 +13,6 @@ function Profile() {
     getById(1)
       .then((student) => {
         console.log(student);
-
         setStudent(student);
       })
       .catch((err) => toast.error('Ha ocurrido un error'));
@@ -43,7 +42,7 @@ function Profile() {
         <div style={{ display: 'flex', gap: 16 }}>
           <img
             style={{ width: 300, height: 300, padding: '0 50px  ' }}
-            src="https://cdn-icons-png.flaticon.com/512/6858/6858504.png"
+            src={student.image}
             alt=""
           />
           <table
