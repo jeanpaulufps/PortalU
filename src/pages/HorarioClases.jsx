@@ -11,8 +11,9 @@ function HorarioClases() {
   useEffect(() => {
     const fetchHorarios = async () => {
       try {
-        const response = await fetch('http://tu-api-url/horarios/'); // Cambia esto por la URL adecuada
+        const response = await fetch('http://127.0.0.1:8000/api/horarios/'); 
         const data = await response.json();
+        console.log('Datos obtenidos de la API:', data); //adsasdasdasdad
         const formattedHorario = formatHorarioData(data);
         setHorario(formattedHorario);
         setLoading(false);
@@ -28,7 +29,7 @@ function HorarioClases() {
   const formatHorarioData = (data) => {
     // Formatea los datos aquí para agruparlos por horas y días
     const horarioPorHoras = [];
-    for (let i = 0; i < 24; i++) { // Suponiendo que cada hora tiene una representación en el horario
+    for (let i = 6; i < 22; i++) { // Suponiendo que cada hora tiene una representación en el horario
       const clase = {
         hora: `${i}:00-${i + 1}:00`,
         lunes: '',
@@ -40,8 +41,8 @@ function HorarioClases() {
       };
 
       data.forEach(entrada => {
-        const horaInicio = new Date(`${entrada.horaInicio}`).getHours();
-        const horaFin = new Date(`${entrada.horaFin}`).getHours();
+        const horaInicio = new Date(`1970-01-01T${entrada.horaInicio}`).getHours();
+      const horaFin = new Date(`1970-01-01T${entrada.horaFin}`).getHours();
         
         if (horaInicio === i) {
           switch (entrada.dia) {
