@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Segment from '../components/Segment';
 import MainLayout from '../layouts/MainLayout';
-import { getById } from '../services/students';
+import * as studentService from '../services/students';
 import toast from 'react-hot-toast';
 
 function Profile() {
@@ -10,7 +10,8 @@ function Profile() {
   const [student, setStudent] = useState({});
 
   useEffect(() => {
-    getById(1)
+    studentService
+      .getById(1)
       .then((student) => {
         console.log(student);
         setStudent(student);

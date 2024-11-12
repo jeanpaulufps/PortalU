@@ -1,48 +1,29 @@
 import Segment from '../components/Segment';
 import MainLayout from '../layouts/MainLayout';
-import { getAverage } from '../helpers';
+import * as studentService from '../services/students';
+import { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../context/AuthProvider';
+import toast from 'react-hot-toast';
 
 const Subjects = () => {
-  const materias = [
-    {
-      codigo: '1155405',
-      nombre: 'TEORÍA DE LA COMPUTACIÓN',
-      creditos: 3,
-      grupo: '1155405-B',
-      cupos: 20,
-      semestre: 9,
-      primeraNota: 4.3,
-      segundaNota: 2.3,
-      terceraNota: 3.5,
-      cuartaNota: 0.1,
-    },
-    {
-      codigo: '1155504',
-      nombre: 'ARQUITECTURA DE COMPUTADORES',
-      creditos: 3,
-      grupo: '1155504-B',
-      cupos: 15,
-      semestre: 3,
-      primeraNota: 3.9,
-      segundaNota: 2.7,
-      terceraNota: 2.2,
-      cuartaNota: 1.4,
-    },
-    {
-      codigo: '1155605',
-      nombre: 'BASES DE DATOS',
-      creditos: 3,
-      grupo: '1155605-A',
-      cupos: 10,
-      semestre: 5,
-      primeraNota: 4.0,
-      segundaNota: 3.7,
-      terceraNota: 3.1,
-      cuartaNota: 4.2,
-    },
-  ];
+  const { user } = useContext(AuthContext);
+
+  const [subjects, setSubjects] = useState([]);
+
+  useEffect(() => {
+    studentService
+      .getSubjects(user.id)
+      .then((data) => setSubjects(data.materiasMatriculadas))
+      .catch((e) => toast.error('Ha ocurrido un error'));
+  }, []);
 
   const date = new Date();
+
+  const getBubbleBg = (note) => {
+    if (!note) return 'gray';
+
+    return note < 3 ? '#dd4b39' : '#00a65a';
+  };
 
   return (
     <MainLayout>
@@ -74,181 +55,74 @@ const Subjects = () => {
         >
           <thead style={{ backgroundColor: '#f2f2f2' }}>
             <tr>
-              <th
-                style={{
-                  padding: '12px',
-                  textAlign: 'left',
-                  borderBottom: '1px solid #ddd',
-                }}
-              >
-                Materia
-              </th>
-              <th
-                style={{
-                  padding: '12px',
-                  textAlign: 'left',
-                  borderBottom: '1px solid #ddd',
-                }}
-              >
-                Nombre
-              </th>
-              <th
-                style={{
-                  padding: '12px',
-                  textAlign: 'left',
-                  borderBottom: '1px solid #ddd',
-                }}
-              >
-                Matriculada
-              </th>
-              <th
-                style={{
-                  padding: '12px',
-                  textAlign: 'left',
-                  borderBottom: '1px solid #ddd',
-                }}
-              >
-                Créditos
-              </th>
-              <th
-                style={{
-                  padding: '12px',
-                  textAlign: 'left',
-                  borderBottom: '1px solid #ddd',
-                }}
-              >
-                Semestre
-              </th>
-              <th
-                style={{
-                  padding: '12px',
-                  textAlign: 'left',
-                  borderBottom: '1px solid #ddd',
-                }}
-              >
-                1P
-              </th>
-              <th
-                style={{
-                  padding: '12px',
-                  textAlign: 'center',
-                  borderBottom: '1px solid #ddd',
-                }}
-              >
-                2P
-              </th>
-              <th
-                style={{
-                  padding: '12px',
-                  textAlign: 'center',
-                  borderBottom: '1px solid #ddd',
-                }}
-              >
-                3P
-              </th>
-              <th
-                style={{
-                  padding: '12px',
-                  textAlign: 'center',
-                  borderBottom: '1px solid #ddd',
-                }}
-              >
-                EX
-              </th>
-              <th
-                style={{
-                  padding: '12px',
-                  textAlign: 'center',
-                  borderBottom: '1px solid #ddd',
-                }}
-              >
-                DEF
-              </th>
+              <th className="subject-th">Materia</th>
+              <th className="subject-th">Nombre</th>
+              <th className="subject-th">Matriculada</th>
+              <th className="subject-th">Créditos</th>
+              <th className="subject-th">Semestre</th>
+              <th className="subject-th">1P</th>
+              <th className="subject-th">2P</th>
+              <th className="subject-th">3P</th>
+              <th className="subject-th">EX</th>
+              <th className="subject-th">DEF</th>
             </tr>
           </thead>
           <tbody>
-            {materias.map((materia) => (
-              <tr key={materia.codigo}>
-                <td style={{ padding: '12px', borderBottom: '1px solid #ddd' }}>
-                  {materia.codigo}
-                </td>
-                <td style={{ padding: '12px', borderBottom: '1px solid #ddd' }}>
-                  {materia.nombre}
-                </td>
-                <td style={{ padding: '12px', borderBottom: '1px solid #ddd' }}>
-                  {materia.grupo}
-                </td>
-                <td style={{ padding: '12px', borderBottom: '1px solid #ddd' }}>
-                  {materia.creditos}
-                </td>
-                <td style={{ padding: '12px', borderBottom: '1px solid #ddd' }}>
-                  {materia.grupo}
-                </td>
-                <td style={{ padding: '12px', borderBottom: '1px solid #ddd' }}>
+            {subjects.map((subject) => (
+              <tr key={subject.codigo}>
+                <td className="subject-td">{subject.codigo}</td>
+                <td className="subject-td">{subject.nombre}</td>
+                <td className="subject-td">{subject.codigo} - A</td>
+                <td className="subject-td">{subject.creditos}</td>
+                <td className="subject-td">{subject.codigo} - A</td>
+                <td className="subject-td">
                   <span
                     style={{
-                      background:
-                        materia.primeraNota < 3 ? '#dd4b39' : '#00a65a',
+                      background: getBubbleBg(subject.notas[0]?.primera),
                     }}
                     className="burbuja-calificacion"
                   >
-                    {materia.primeraNota.toFixed(1) || '-'}
+                    {subject.notas[0]?.primera || '-'}
                   </span>
                 </td>
-                <td style={{ padding: '12px', borderBottom: '1px solid #ddd' }}>
+                <td className="subject-td">
                   <span
                     style={{
-                      background:
-                        materia.segundaNota < 3 ? '#dd4b39' : '#00a65a',
+                      background: getBubbleBg(subject.notas[0]?.segunda),
                     }}
                     className="burbuja-calificacion"
                   >
-                    {materia.segundaNota || '-'}
+                    {subject.notas[0]?.segunda.toFixed(1) || '-'}
                   </span>
                 </td>
-                <td style={{ padding: '12px', borderBottom: '1px solid #ddd' }}>
+                <td className="subject-td">
                   <span
                     style={{
-                      background:
-                        materia.terceraNota < 3 ? '#dd4b39' : '#00a65a',
+                      background: getBubbleBg(subject.notas[0]?.tercera),
                     }}
                     className="burbuja-calificacion"
                   >
-                    {materia.terceraNota || '-'}
+                    {subject.notas[0]?.tercera.toFixed(1) || '-'}
                   </span>
                 </td>
-                <td style={{ padding: '12px', borderBottom: '1px solid #ddd' }}>
+                <td className="subject-td">
                   <span
                     style={{
-                      background:
-                        materia.cuartaNota < 3 ? '#dd4b39' : '#00a65a',
+                      background: getBubbleBg(subject.notas[0]?.cuarta),
                     }}
                     className="burbuja-calificacion"
                   >
-                    {materia.cuartaNota || '-'}
+                    {subject.notas[0]?.cuarta || '-'}
                   </span>
                 </td>
-                <td style={{ padding: '12px', borderBottom: '1px solid #ddd' }}>
+                <td className="subject-td">
                   <span
                     style={{
-                      background:
-                        getAverage(
-                          materia.primeraNota,
-                          materia.segundaNota,
-                          materia.terceraNota,
-                          materia.cuartaNota
-                        ) < 3
-                          ? 'red'
-                          : '#00a65a',
+                      background: getBubbleBg(subject.notas[0]?.promedio),
                     }}
                     className="burbuja-calificacion"
                   >
-                    {getAverage(
-                      materia.primeraNota,
-                      materia.segundaNota,
-                      materia.terceraNota,
-                      materia.cuartaNota
-                    ) || '-'}
+                    {subject.notas[0]?.promedio.toFixed(1) || '-'}
                   </span>
                 </td>
               </tr>

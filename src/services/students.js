@@ -7,3 +7,11 @@ export const getById = (id) => {
     .then((res) => res.json())
     .then((data) => data);
 };
+
+export const getSubjects = (id) => {
+  const url = new URL(`${API_URL}/estudiantes/${id}/materias/`);
+
+  return fetch(url)
+    .then((res) => res.json())
+    .then((data) => data);
+};
