@@ -4,6 +4,7 @@ import * as studentService from '../services/students';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/AuthProvider';
 import toast from 'react-hot-toast';
+import Loader from '../components/Loader';
 
 const Subjects = () => {
   const { user } = useContext(AuthContext);
@@ -68,65 +69,74 @@ const Subjects = () => {
             </tr>
           </thead>
           <tbody>
-            {subjects.map((subject) => (
-              <tr key={subject.codigo}>
-                <td className="subject-td">{subject.codigo}</td>
-                <td className="subject-td">{subject.nombre}</td>
-                <td className="subject-td">{subject.codigo} - A</td>
-                <td className="subject-td">{subject.creditos}</td>
-                <td className="subject-td">{subject.codigo} - A</td>
-                <td className="subject-td">
-                  <span
-                    style={{
-                      background: getBubbleBg(subject.notas[0]?.primera),
-                    }}
-                    className="burbuja-calificacion"
-                  >
-                    {subject.notas[0]?.primera || '-'}
-                  </span>
-                </td>
-                <td className="subject-td">
-                  <span
-                    style={{
-                      background: getBubbleBg(subject.notas[0]?.segunda),
-                    }}
-                    className="burbuja-calificacion"
-                  >
-                    {subject.notas[0]?.segunda.toFixed(1) || '-'}
-                  </span>
-                </td>
-                <td className="subject-td">
-                  <span
-                    style={{
-                      background: getBubbleBg(subject.notas[0]?.tercera),
-                    }}
-                    className="burbuja-calificacion"
-                  >
-                    {subject.notas[0]?.tercera.toFixed(1) || '-'}
-                  </span>
-                </td>
-                <td className="subject-td">
-                  <span
-                    style={{
-                      background: getBubbleBg(subject.notas[0]?.cuarta),
-                    }}
-                    className="burbuja-calificacion"
-                  >
-                    {subject.notas[0]?.cuarta || '-'}
-                  </span>
-                </td>
-                <td className="subject-td">
-                  <span
-                    style={{
-                      background: getBubbleBg(subject.notas[0]?.promedio),
-                    }}
-                    className="burbuja-calificacion"
-                  >
-                    {subject.notas[0]?.promedio.toFixed(1) || '-'}
-                  </span>
+            {subjects.length < 1 ? (
+              <tr>
+                <td colSpan={10} style={{ padding: '24px' }}>
+                  <Loader></Loader>
+                  <p style={{ textAlign: 'center' }}>Cargando...</p>
                 </td>
               </tr>
-            ))}
+            ) : (
+              subjects.map((subject) => (
+                <tr key={subject.codigo}>
+                  <td className="subject-td">{subject.codigo}</td>
+                  <td className="subject-td">{subject.nombre}</td>
+                  <td className="subject-td">{subject.codigo} - A</td>
+                  <td className="subject-td">{subject.creditos}</td>
+                  <td className="subject-td">{subject.codigo} - A</td>
+                  <td className="subject-td">
+                    <span
+                      style={{
+                        background: getBubbleBg(subject.notas[0]?.primera),
+                      }}
+                      className="burbuja-calificacion"
+                    >
+                      {subject.notas[0]?.primera || '-'}
+                    </span>
+                  </td>
+                  <td className="subject-td">
+                    <span
+                      style={{
+                        background: getBubbleBg(subject.notas[0]?.segunda),
+                      }}
+                      className="burbuja-calificacion"
+                    >
+                      {subject.notas[0]?.segunda.toFixed(1) || '-'}
+                    </span>
+                  </td>
+                  <td className="subject-td">
+                    <span
+                      style={{
+                        background: getBubbleBg(subject.notas[0]?.tercera),
+                      }}
+                      className="burbuja-calificacion"
+                    >
+                      {subject.notas[0]?.tercera.toFixed(1) || '-'}
+                    </span>
+                  </td>
+                  <td className="subject-td">
+                    <span
+                      style={{
+                        background: getBubbleBg(subject.notas[0]?.cuarta),
+                      }}
+                      className="burbuja-calificacion"
+                    >
+                      {subject.notas[0]?.cuarta || '-'}
+                    </span>
+                  </td>
+                  <td className="subject-td">
+                    <span
+                      style={{
+                        background: getBubbleBg(subject.notas[0]?.promedio),
+                      }}
+                      className="burbuja-calificacion"
+                    >
+                      {subject.notas[0]?.promedio.toFixed(1) || '-'}
+                    </span>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </Segment>
