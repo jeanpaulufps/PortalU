@@ -1,6 +1,10 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../context/AuthProvider';
 
 function Sidebar() {
+  const { user } = useContext(AuthContext);
+
   return (
     <aside
       style={{
@@ -25,7 +29,9 @@ function Sidebar() {
             src="https://cdn-icons-png.flaticon.com/512/6858/6858504.png"
             alt=""
           />
-          <span>Ivan Jean Paul</span>
+          <span>
+            {user.nombres} {user.apellidos}
+          </span>
         </div>
         <p style={{ padding: '12px 16px', color: '#848484' }}>
           NAVEGACION PRINCIPAL

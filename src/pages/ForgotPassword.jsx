@@ -24,8 +24,6 @@ function ForgotPassword() {
       body: formData,
     })
       .then((response) => {
-        console.log(response);
-
         if (!response.ok) {
           return Promise.reject(
             new Error('Ha ocurrido un error, intentalo más tarde')
@@ -80,8 +78,8 @@ function ForgotPassword() {
               placeholder="tucorreo@gmail.com"
               type="email"
               id="email"
-              value={email} // Vincular el valor del input al estado
-              onChange={(e) => setEmail(e.target.value)} // Actualizar el estado cuando cambia el input
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)} 
             />
           </div>
 

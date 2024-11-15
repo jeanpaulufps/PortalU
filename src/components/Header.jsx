@@ -29,7 +29,7 @@ function Header() {
         ESTUDIANTES
       </Link>
       <div>
-        <button
+        {/* <button
           style={{
             height: '100%',
             padding: '8px 16px',
@@ -41,33 +41,11 @@ function Header() {
           }}
         >
           Notificaciones
-        </button>
-        <Link
-          to="/profile"
-          style={{
-            height: '100%',
-            padding: '8px 16px',
-            background: 'none',
-            color: 'white',
-            fontSize: 14,
-            border: 'none',
-            cursor: 'pointer',
-          }}
-        >
+        </button> */}
+        <Link to="/profile" className="header-link">
           Perfil
         </Link>
-        <button
-          style={{
-            height: '100%',
-            padding: '8px 16px',
-            background: 'none',
-            color: 'white',
-            fontSize: 14,
-            border: 'none',
-            cursor: 'pointer',
-          }}
-          onClick={logout}
-        >
+        <button className="header-link" onClick={logout}>
           Cerrar sesión
         </button>
       </div>

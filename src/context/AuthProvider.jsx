@@ -6,7 +6,7 @@ export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(
-    JSON.parse(window.localStorage.getItem('user'))
+    JSON.parse(window.localStorage.getItem('user')) || {}
   );
   const [loading, setLoading] = useState(false);
 
@@ -34,7 +34,6 @@ export function AuthProvider({ children }) {
       })
       .then((data) => {
         setUser(data.usuario);
-        console.log(data);
         window.localStorage.setItem('user', JSON.stringify(data.usuario));
         navigate('/');
       })

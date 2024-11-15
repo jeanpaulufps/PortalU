@@ -13,7 +13,6 @@ function Profile() {
     studentService
       .getById(1)
       .then((student) => {
-        console.log(student);
         setStudent(student);
       })
       .catch((err) => toast.error('Ha ocurrido un error'));

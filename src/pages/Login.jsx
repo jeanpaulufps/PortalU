@@ -14,7 +14,7 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     const [codigo, documento, password] = e.target;
 
     if (!codigo.value) {
@@ -34,18 +34,7 @@ function Login() {
   };
 
   return (
-    <div
-      style={{
-        height: '100vh',
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundImage: 'url(./login-background.jpg)',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-      }}
-    >
+    <div className="login-wrapper">
       <form
         onSubmit={handleSubmit}
         style={{
