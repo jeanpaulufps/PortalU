@@ -66,6 +66,39 @@ tr:nth-of-type(odd) {
   border-bottom: 1px solid #ddd;
 }
 
+.schedule-th {
+  background-color: #f0f4f8;
+  color: #333;
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: center;
+  font-weight: bol;
+}
+
+.schedule-td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.subject-box-style {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 60px;
+  color: #333;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 0.85em;
+  text-align: center;
+  padding: 0px 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  line-height: 1.2em;
+}
+
 .header-link {
   height: 100%;
   padding: 8px 16px;
@@ -176,4 +209,14 @@ tr:nth-of-type(odd) {
 .loader .bar12 {
   transform: rotate(330deg) translate(0, -130%);
   animation-delay: -0.1s;
+}
+
+.pdf-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
