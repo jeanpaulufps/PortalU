@@ -50,7 +50,15 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ login, logout, user, loading }}>
+    <AuthContext.Provider
+      value={{
+        login,
+        logout,
+        user,
+        loading,
+        isAuth: !(Object.keys(user).length === 0),
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
