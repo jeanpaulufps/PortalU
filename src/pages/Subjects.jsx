@@ -91,7 +91,7 @@ const Subjects = () => {
                       }}
                       className="burbuja-calificacion"
                     >
-                      {subject.notas[0]?.primera || '-'}
+                      {subject.notas[0]?.primera.toFixed(1) || '-'}
                     </span>
                   </td>
                   <td className="subject-td">
@@ -121,7 +121,7 @@ const Subjects = () => {
                       }}
                       className="burbuja-calificacion"
                     >
-                      {subject.notas[0]?.cuarta || '-'}
+                      {subject.notas[0]?.cuarta.toFixed(1) || '-'}
                     </span>
                   </td>
                   <td className="subject-td">
