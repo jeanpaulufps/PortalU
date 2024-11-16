@@ -53,7 +53,7 @@ function Sidebar() {
             </Link>
           </li>
           <li>
-            <Link to="/horario-clases" className="sidebar-link">
+            <Link to="/class-schedule" className="sidebar-link">
               Horario de clases
             </Link>
           </li>

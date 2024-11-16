@@ -6,7 +6,7 @@ import Profile from './pages/Profile';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import Subjects from './pages/Subjects';
-import HorarioClases from './pages/HorarioClases';
+import ClassSchedule from './pages/ClassSchedule';
 import { Toaster } from 'react-hot-toast';
 import Inclusion from './pages/Inclusion';
 import { AuthProvider } from './context/AuthProvider';
@@ -18,7 +18,7 @@ function App() {
     { path: '/profile', element: <Profile /> },
     { path: '/subjects', element: <Subjects /> },
     { path: '/inclusion', element: <Inclusion /> },
-    { path: '/horario-clases', element: <HorarioClases /> },
+    { path: '/class-schedule', element: <ClassSchedule /> },
   ];
 
   return (
@@ -33,7 +33,7 @@ function App() {
             <Route
               key={route.path}
               path={route.path}
-              element={<PrivateRoute>{route.element}</PrivateRoute>}
+              element={/* <PrivateRoute> */route.element/* </PrivateRoute> */}
             />
           ))}
 
