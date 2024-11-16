@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from 'react';
 import { getSchedule } from '../services/students';
 import { AuthContext } from '../context/AuthProvider';
 import Loader from '../components/Loader';
+import toast from 'react-hot-toast';
 
 const diasSemana = [
   'Lunes',
@@ -52,7 +53,9 @@ function ClassSchedule() {
   const [schedule, setSchedule] = useState([]);
 
   useEffect(() => {
-    getSchedule(user.id ).then((data) => setSchedule(data.materias_matriculadas));
+    getSchedule(user.id)
+      .then((data) => setSchedule(data.materias_matriculadas))
+      .catch((err) => toast.error('Ha ocurrido un error'));
   }, []);
 
   const horarioTabla = horas.map((hora) => {
@@ -72,7 +75,9 @@ function ClassSchedule() {
           horaInicio <= inicio &&
           horaFin > inicio
         ) {
-          fila[horario.dia_nombre] = `${materia.nombre} (${materia.codigo})`;
+          fila[
+            horario.dia_nombre
+          ] = `${materia.nombre} ${materia.codigo} - (Aula:${horario.aula})`;
         }
       });
     });
