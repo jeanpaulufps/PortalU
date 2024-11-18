@@ -231,7 +231,6 @@ tr:nth-of-type(odd) {
   cursor: pointer;
 }
 
-/* Contenedor del formulario */
 .form-container {
   max-width: 400px;
   margin: 50px auto;
@@ -242,7 +241,6 @@ tr:nth-of-type(odd) {
   background-color: #fff;
 }
 
-/* Título del formulario */
 .form-title {
   text-align: center;
   margin-bottom: 20px;
@@ -250,12 +248,10 @@ tr:nth-of-type(odd) {
   color: #333;
 }
 
-/* Grupo de etiquetas y campos */
 .form-group {
   margin-bottom: 15px;
 }
 
-/* Etiquetas */
 .form-label {
   display: block;
   margin-bottom: 5px;
@@ -263,7 +259,6 @@ tr:nth-of-type(odd) {
   color: #555;
 }
 
-/* Campos de entrada */
 .form-input {
   width: 96%;
   padding: 10px;
@@ -279,7 +274,6 @@ tr:nth-of-type(odd) {
   border-color: #4caf50;
 }
 
-/* Botón */
 .form-button {
   padding: 10px;
   background-color: #4caf50;
