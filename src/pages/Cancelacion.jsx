@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import Segment from '../components/Segment';
 import MainLayout from '../layouts/MainLayout';
-import { diasSemana } from './ClassSchedule';
+import { weekDays } from './ClassSchedule';
 import { AuthContext } from '../context/AuthProvider';
 import { cancelSubject, getEnrolledSubject,  } from '../services/subjects';
 import Loader from '../components/Loader';
@@ -141,7 +141,7 @@ const Cancelacion = () => {
                   >
                     {materia.horarios.map(
                       (horario, i) =>
-                        `${diasSemana[horario.dia]} / ${formatTime(
+                        `${weekDays[horario.dia]} / ${formatTime(
                           horario.horaInicio
                         )} - ${formatTime(horario.horaFin)} ${
                           i !== subjects.length - 1 ? '|' : ''

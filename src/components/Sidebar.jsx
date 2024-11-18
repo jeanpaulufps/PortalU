@@ -62,6 +62,11 @@ function Sidebar() {
               Horario de clases
             </Link>
           </li>
+          <li>
+            <Link to="/forums" className="sidebar-link">
+              Foros
+            </Link>
+          </li>
         </ul>
       </nav>
     </aside>

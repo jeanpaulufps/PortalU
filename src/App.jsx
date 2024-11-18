@@ -12,6 +12,9 @@ import Inclusion from './pages/Inclusion';
 import { AuthProvider } from './context/AuthProvider';
 import PrivateRoute from './components/PrivateRoute';
 import Cancelacion from './pages/Cancelacion';
+import Forums from './pages/Forums';
+import Posts from './pages/Posts';
+import Post from './pages/Post';
 
 function App() {
   const routes = [
@@ -21,6 +24,9 @@ function App() {
     { path: '/inclusion', element: <Inclusion /> },
     { path: '/cancelacion', element: <Cancelacion /> },
     { path: '/class-schedule', element: <ClassSchedule /> },
+    { path: '/forums', element: <Forums /> },
+    { path: '/forums/:forumId/posts', element: <Posts /> },
+    { path: '/post/:postId', element: <Post /> },
   ];
 
   return (

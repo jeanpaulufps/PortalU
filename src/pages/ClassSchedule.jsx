@@ -3,12 +3,12 @@ import MainLayout from '../layouts/MainLayout';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import { useContext, useEffect, useState } from 'react';
-import { getSchedule } from '../services/schedule';
+import { getSchedule } from '../services/schedules';
 import { AuthContext } from '../context/AuthProvider';
 import Loader from '../components/Loader';
 import toast from 'react-hot-toast';
 
-export const diasSemana = [
+export const weekDays = [
   'Lunes',
   'Martes',
   'Miércoles',
@@ -16,7 +16,7 @@ export const diasSemana = [
   'Viernes',
   'Sábado',
 ];
-const horas = [
+const hours = [
   '06:00-07:00',
   '07:00-08:00',
   '08:00-09:00',
@@ -58,11 +58,11 @@ function ClassSchedule() {
       .catch((err) => toast.error('Ha ocurrido un error'));
   }, []);
 
-  const horarioTabla = horas.map((hora) => {
+  const horarioTabla = hours.map((hora) => {
     const [inicio] = hora.split('-');
     const fila = {
       hora,
-      ...Object.fromEntries(diasSemana.map((dia) => [dia, ''])),
+      ...Object.fromEntries(weekDays.map((dia) => [dia, ''])),
     };
 
     schedule.forEach((materia) => {
@@ -119,7 +119,7 @@ function ClassSchedule() {
                 horarioTabla.map((fila, index) => (
                   <tr key={index}>
                     <td className="schedule-td">{fila.hora}</td>
-                    {diasSemana.map((dia) => (
+                    {weekDays.map((dia) => (
                       <td key={dia} className="schedule-td">
                         {fila[dia] && (
                           <span
