@@ -92,6 +92,7 @@ function UpdateProfileModal({ userId, handleStudent }) {
                 >
                   Actualizar datos
                 </button>
+                Para actualizar mas datos comunicate con soporte...
               </form>
             </div>
           </main>
