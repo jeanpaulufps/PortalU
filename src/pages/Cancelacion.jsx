@@ -3,28 +3,28 @@ import Segment from '../components/Segment';
 import MainLayout from '../layouts/MainLayout';
 import { diasSemana } from './ClassSchedule';
 import { AuthContext } from '../context/AuthProvider';
-import { enrollSubject, getNoEnrolledSubject } from '../services/subjects';
+import { cancelSubject, getEnrolledSubject,  } from '../services/subjects';
 import Loader from '../components/Loader';
 import toast from 'react-hot-toast';
 
-const Inclusion = () => {
+const Cancelacion = () => {
   const [subjects, setSubjects] = useState([]);
   const [loading, setLoading] = useState(false);
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    getNoEnrolledSubject(user.id).then((data) => setSubjects(data));
+    getEnrolledSubject(user.id).then((data) => setSubjects(data));
   }, []);
 
-  const handleMatricular = (subjectId) => {
+  const handleCancelar = (subjectId) => {
     setLoading(true);
-    enrollSubject(user.id, subjectId)
+    cancelSubject(user.id, subjectId)
       .then((res) => {
         const newSubjects = [...subjects];
         const index = newSubjects.findIndex((it) => it.id === subjectId);
         newSubjects.splice(index, 1);
         setSubjects(newSubjects);
-        toast.success('Materia matriculada con exito');
+        toast.success('Materia cancelada con exito');
       })
       .catch((e) => toast.error('Ha ocurrido un error'))
       .finally(() => setLoading(false));
@@ -39,7 +39,7 @@ const Inclusion = () => {
 
   return (
     <MainLayout>
-      <Segment title="Inclusión Materias">
+      <Segment title="Cancelacion Materias">
         <table
           style={{
             width: '100%',
@@ -111,7 +111,7 @@ const Inclusion = () => {
                   borderBottom: '1px solid #ddd',
                 }}
               >
-                Matricular
+                Cancelar
               </th>
             </tr>
           </thead>
@@ -172,7 +172,7 @@ const Inclusion = () => {
                   >
                     <button
                       style={{
-                        background: loading ? '#ccc' : 'green',
+                        background: loading ? '#ccc' : 'red',
                         color: 'white',
                         border: 'none',
                         padding: 4,
@@ -180,9 +180,9 @@ const Inclusion = () => {
                         cursor: loading ? 'not-allowed' : 'pointer',
                       }}
                       disabled={loading}
-                      onClick={() => handleMatricular(materia.id)}
+                      onClick={() => handleCancelar(materia.id)}
                     >
-                      Matricular
+                      Cancelar
                     </button>
                   </td>
                 </tr>
@@ -195,4 +195,4 @@ const Inclusion = () => {
   );
 };
 
-export default Inclusion;
+export default Cancelacion;

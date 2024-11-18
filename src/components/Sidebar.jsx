@@ -53,6 +53,11 @@ function Sidebar() {
             </Link>
           </li>
           <li>
+            <Link to="/cancelacion" className="sidebar-link">
+              Cancelacion materias
+            </Link>
+          </li>
+          <li>
             <Link to="/class-schedule" className="sidebar-link">
               Horario de clases
             </Link>

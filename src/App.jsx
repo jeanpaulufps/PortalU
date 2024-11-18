@@ -11,6 +11,7 @@ import { Toaster } from 'react-hot-toast';
 import Inclusion from './pages/Inclusion';
 import { AuthProvider } from './context/AuthProvider';
 import PrivateRoute from './components/PrivateRoute';
+import Cancelacion from './pages/Cancelacion';
 
 function App() {
   const routes = [
@@ -18,6 +19,7 @@ function App() {
     { path: '/profile', element: <Profile /> },
     { path: '/subjects', element: <Subjects /> },
     { path: '/inclusion', element: <Inclusion /> },
+    { path: '/cancelacion', element: <Cancelacion /> },
     { path: '/class-schedule', element: <ClassSchedule /> },
   ];
 
