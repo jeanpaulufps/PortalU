@@ -3,12 +3,12 @@ import MainLayout from '../layouts/MainLayout';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import { useContext, useEffect, useState } from 'react';
-import { getSchedule } from '../services/students';
+import { getSchedule } from '../services/schedule';
 import { AuthContext } from '../context/AuthProvider';
 import Loader from '../components/Loader';
 import toast from 'react-hot-toast';
 
-const diasSemana = [
+export const diasSemana = [
   'Lunes',
   'Martes',
   'Miércoles',
