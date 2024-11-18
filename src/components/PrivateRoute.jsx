@@ -4,7 +4,6 @@ import { AuthContext as AuthContext } from '../context/AuthProvider';
 
 function PrivateRoute({ children }) {
   const { isAuth } = useContext(AuthContext);
-  console.log(123);
   
   if (!isAuth) {
     return <Navigate to="/login" />;
