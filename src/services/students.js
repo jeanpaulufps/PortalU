@@ -11,27 +11,8 @@ export const getById = (id) => {
     .then((data) => data);
 };
 
-export const getSubjects = (id) => {
-  const url = new URL(`${API_URL}/estudiantes/${id}/materias/`);
 
-  return fetch(url)
-    .then((res) => {
-      if (!res.ok) throw new Error('Ha ocurrido un error');
-      return res.json();
-    })
-    .then((data) => data);
-};
 
-export const getSchedule = (id) => {
-  const url = new URL(`${API_URL}/estudiantes/${id}/horario/`);
-
-  return fetch(url)
-    .then((res) => {
-      if (!res.ok) throw new Error('Ha ocurrido un error');
-      return res.json();
-    })
-    .then((data) => data);
-};
 
 export const updateStudent = (id, direccion, celular, telefono) => {
   const url = new URL(`${API_URL}/estudiantes/${id}/`);
