@@ -1,10 +1,17 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthProvider';
 
 function Login() {
   const { login, loading } = useContext(AuthContext);
+
+  const { isAuth } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuth) navigate('/');
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
