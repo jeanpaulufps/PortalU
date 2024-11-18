@@ -1,6 +1,6 @@
 import Segment from '../components/Segment';
 import MainLayout from '../layouts/MainLayout';
-import * as studentService from '../services/students';
+import { getSubjects } from '../services/subjects';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/AuthProvider';
 import toast from 'react-hot-toast';
@@ -12,8 +12,7 @@ const Subjects = () => {
   const [subjects, setSubjects] = useState([]);
 
   useEffect(() => {
-    studentService
-      .getSubjects(user.id)
+    getSubjects(user.id)
       .then((data) => setSubjects(data.materiasMatriculadas))
       .catch((e) => toast.error('Ha ocurrido un error'));
   }, []);
@@ -81,9 +80,9 @@ const Subjects = () => {
                 <tr key={subject.codigo}>
                   <td className="subject-td">{subject.codigo}</td>
                   <td className="subject-td">{subject.nombre}</td>
-                  <td className="subject-td">{subject.codigo} - A</td>
+                  <td className="subject-td">{subject.codigo}</td>
                   <td className="subject-td">{subject.creditos}</td>
-                  <td className="subject-td">{subject.codigo} - A</td>
+                  <td className="subject-td">{subject.codigo}</td>
                   <td className="subject-td">
                     <span
                       style={{
