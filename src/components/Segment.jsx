@@ -1,4 +1,4 @@
-function Segment({ children, title, icon }) {
+function Segment({ children, title, action, icon }) {
   return (
     <main
       style={{
@@ -8,7 +8,17 @@ function Segment({ children, title, icon }) {
         borderRadius: 4,
       }}
     >
-      <h2 style={{ padding: 8, borderBottom: '1px solid #d2d6de' }}>{title}</h2>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          padding: 8,
+          borderBottom: '1px solid #d2d6de',
+        }}
+      >
+        <h2 style={{}}>{title}</h2>
+        {action}
+      </div>
       <div style={{ padding: 16 }}>{children}</div>
     </main>
   );

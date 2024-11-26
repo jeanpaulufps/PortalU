@@ -1,15 +1,25 @@
 import { Link, useParams, useRoutes } from 'react-router-dom';
 import Segment from '../components/Segment';
 import MainLayout from '../layouts/MainLayout';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Loader from '../components/Loader';
 import { getPosts } from '../services/forums';
 import toast from 'react-hot-toast';
+import CreatePostModal from '../components/CreatePostModal';
+import { AuthContext } from '../context/AuthProvider';
 
 function Posts({}) {
   const { forumId } = useParams();
+  const { user } = useContext(AuthContext);
 
   const [posts, setPosts] = useState([]);
+
+  const addPost = (post) =>
+    setPosts((prevState) => {
+      const newPosts = [...prevState];
+      newPosts.push(post);
+      return newPosts;
+    });
 
   useEffect(() => {
     getPosts(forumId)
@@ -19,7 +29,16 @@ function Posts({}) {
 
   return (
     <MainLayout>
-      <Segment title="Publicaciones del foro">
+      <Segment
+        title="Publicaciones del foro"
+        action={
+          <CreatePostModal
+            forumId={forumId}
+            userId={user.id}
+            addPost={addPost}
+          ></CreatePostModal>
+        }
+      >
         <ul>
           <ul>
             {posts.length < 1 ? (
@@ -36,7 +55,9 @@ function Posts({}) {
                     </h3>
                   </Link>
                   <small>Estudiante: {post.estudiante}</small> <br />
-                  <small>fecha: {new Date(post.fecha_creacion).toLocaleString()}</small>
+                  <small>
+                    fecha: {new Date(post.fecha_creacion).toLocaleString()}
+                  </small>
                 </li>
               ))
             )}

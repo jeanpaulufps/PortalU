@@ -231,6 +231,25 @@ tr:nth-of-type(odd) {
   cursor: pointer;
 }
 
+.create-post-btn {
+  padding: 10px 20px;
+  background-color: #6a6bbd;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-post-btn {
+  padding: 30px 20px;
+  margin-left: 8px;
+  background-color: #6a6bbd;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 .form-container {
   max-width: 400px;
   margin: 50px auto;

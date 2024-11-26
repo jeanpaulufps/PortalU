@@ -1,16 +1,20 @@
 import { useParams } from 'react-router-dom';
 import Segment from '../components/Segment';
 import MainLayout from '../layouts/MainLayout';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Loader from '../components/Loader';
-import { getPost } from '../services/forums';
+import { addComment, getPost } from '../services/forums';
 import toast from 'react-hot-toast';
+import { AuthContext } from '../context/AuthProvider';
 
 function Post({}) {
   const { postId } = useParams();
 
   const [loading, setLoading] = useState(false);
+  const [addingPost, setAddingPost] = useState(false);
   const [post, setPost] = useState({});
+
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     setLoading(true);
@@ -22,9 +26,20 @@ function Post({}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // const [text] = e.target
+    const [text] = e.target;
+    setAddingPost(true);
+    addComment(postId, user.id, text.value)
+      .then((resp) => {
+        toast.success('Comentario creado con éxito');
 
-    console.dir(e.target);
+        setPost((prevState) => {
+          const comentarios = [...prevState.comentarios];
+          comentarios.push(resp);
+          return { ...prevState, comentarios };
+        });
+      })
+      .catch(() => toast.error('Ha ocurrido un error'))
+      .finally(() => setAddingPost(false));
   };
 
   return (
@@ -55,7 +70,7 @@ function Post({}) {
             <div>
               <h3>Comentarios</h3>
               <ul>
-                {post.comentarios &&
+                {post.comentarios?.length > 0 ? (
                   post.comentarios.map((comentario) => (
                     <li
                       style={{
@@ -74,7 +89,18 @@ function Post({}) {
                         <p>{comentario.contenido}</p>
                       </div>
                     </li>
-                  ))}
+                  ))
+                ) : (
+                  <h4
+                    style={{
+                      padding: '10px 20px',
+                      background: '#ccc',
+                      margin: '20px 10px',
+                    }}
+                  >
+                    No hay comentatios aún, sé el primero en comentar
+                  </h4>
+                )}
               </ul>
 
               <form
@@ -82,14 +108,19 @@ function Post({}) {
                 style={{ display: 'flex', alignItems: 'center' }}
               >
                 <textarea
-                  rows={6}
+                  rows={4}
                   style={{ flexGrow: 1, padding: '8px' }}
                   type="text"
                   name=""
                   placeholder="Agregar un comentario..."
                   id=""
                 />
-                <input className="update-btn" type="submit" value="Enviar" />
+                <input
+                  disabled={addingPost}
+                  className="add-post-btn"
+                  type="submit"
+                  value="Enviar"
+                />
               </form>
             </div>
           </>
