@@ -67,6 +67,11 @@ function Sidebar() {
               Foros
             </Link>
           </li>
+          <li>
+            <Link to="/asesorias" className="sidebar-link">
+              Asesorias
+            </Link>
+          </li>
         </ul>
       </nav>
     </aside>

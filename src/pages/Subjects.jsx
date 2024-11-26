@@ -82,7 +82,9 @@ const Subjects = () => {
                   <td className="subject-td">{subject.nombre}</td>
                   <td className="subject-td">{subject.codigo}</td>
                   <td className="subject-td">{subject.creditos}</td>
-                  <td className="subject-td">{subject.codigo}</td>
+                  <td className="subject-td">
+                    {Math.round(Math.random() * 9 + 1)}
+                  </td>
                   <td className="subject-td">
                     <span
                       style={{
@@ -138,6 +140,48 @@ const Subjects = () => {
             )}
           </tbody>
         </table>
+
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'end',
+            margin: '8px 0px 0px',
+          }}
+        >
+          <button className="create-post-btn">Calculadora de notas</button>
+        </div>
+
+        <div style={{ border: '1px solid', marginTop: '8px' }}>
+          <h4>Calculadora de notas</h4>
+          <table style={{ width: '100%' }}>
+            <thead>
+              <tr>
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Creditos</th>
+                <th>Semestre</th>
+                <th>1P</th>
+                <th>2P</th>
+                <th>3P</th>
+                <th>EX</th>
+                <th>DEF</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1121231</td>
+                <td>ARQUITECTURA PC</td>
+                <td>3</td>
+                <td>7</td>
+                <td>3.1</td>
+                <td>1.9</td>
+                <td>3.4</td>
+                <td>1.9</td>
+                <td>3.0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </Segment>
     </MainLayout>
   );

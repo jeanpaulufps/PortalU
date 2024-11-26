@@ -15,6 +15,7 @@ import Cancelacion from './pages/Cancelacion';
 import Forums from './pages/Forums';
 import Posts from './pages/Posts';
 import Post from './pages/Post';
+import Asesorias from './pages/Asesorias';
 
 function App() {
   const routes = [
@@ -27,6 +28,7 @@ function App() {
     { path: '/forums', element: <Forums /> },
     { path: '/forums/:forumId/posts', element: <Posts /> },
     { path: '/post/:postId', element: <Post /> },
+    { path: '/asesorias', element: <Asesorias /> },
   ];
 
   return (

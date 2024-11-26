@@ -11,6 +11,17 @@ export const getSubjects = (id) => {
     .then((data) => data);
 };
 
+export const getAserorias = (id) => {
+  const url = new URL(`${API_URL}/estudiantes/${id}/materias-con-horarios/`);
+
+  return fetch(url)
+    .then((res) => {
+      if (!res.ok) throw new Error('Ha ocurrido un error');
+      return res.json();
+    })
+    .then((data) => data);
+};
+
 export const getEnrolledSubject = (id) => {
   const url = new URL(`${API_URL}/estudiantes/${id}/materias/matriculadas/`);
 
