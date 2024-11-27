@@ -1,12 +1,22 @@
-import { Link } from 'react-router-dom';
-import Header from '../components/Header';
-import Sidebar from '../components/Sidebar';
 import MainLayout from '../layouts/MainLayout';
+import Segment from '../components/Segment';
+import Article from '../components/Article';
+import newsList from '../mocks/news.json';
 
 function Home() {
   return (
     <MainLayout>
-      <h1>Hola</h1>
+      <Segment title="Novedades recientes">
+        <div
+          style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18 }}
+        >
+          {newsList.map((news) => (
+            <Article key={news.id} title={news.title}>
+              {news.content}
+            </Article>
+          ))}
+        </div>
+      </Segment>
     </MainLayout>
   );
 }
