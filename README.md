@@ -1,3 +1,9 @@
+# USUARIO DE PRUEBA
+
+codigo :  1153122
+numero documento: 123456789
+contraseña :  test123
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
