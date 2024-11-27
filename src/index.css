@@ -338,3 +338,18 @@ button:disabled,
 .def-col {
   background-color: #45a049;
 }
+
+.calendar-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.calendar-table th {
+  padding: 8px;
+  border-bottom: 1px solid;
+}
+
+.calendar-table td {
+  padding: 8px;
+}

@@ -72,6 +72,11 @@ function Sidebar() {
               Asesorias
             </Link>
           </li>
+          <li>
+            <Link to="/calendar" className="sidebar-link">
+              Calendario Academico
+            </Link>
+          </li>
         </ul>
       </nav>
     </aside>

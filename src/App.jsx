@@ -16,6 +16,7 @@ import Forums from './pages/Forums';
 import Posts from './pages/Posts';
 import Post from './pages/Post';
 import Asesorias from './pages/Asesorias';
+import Calendar from './pages/Calendar';
 
 function App() {
   const routes = [
@@ -29,6 +30,7 @@ function App() {
     { path: '/forums/:forumId/posts', element: <Posts /> },
     { path: '/post/:postId', element: <Post /> },
     { path: '/asesorias', element: <Asesorias /> },
+    { path: '/calendar', element: <Calendar /> },
   ];
 
   return (
