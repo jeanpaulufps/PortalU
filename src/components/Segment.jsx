@@ -6,6 +6,7 @@ function Segment({ children, title, action, icon }) {
         background: 'white',
         borderTop: '3px solid #000b8b',
         borderRadius: 4,
+        overflow: 'auto',
       }}
     >
       <div

@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/AuthProvider';
 import toast from 'react-hot-toast';
 import Loader from '../components/Loader';
+import Calculator from '../components/Calculator';
 
 const Subjects = () => {
   const { user } = useContext(AuthContext);
@@ -24,6 +25,21 @@ const Subjects = () => {
 
     return note < 3 ? '#dd4b39' : '#00a65a';
   };
+
+  const [showCalculator, setShowCalculator] = useState(false);
+
+  const formatSubjects = () =>
+    subjects.map(({ codigo, nombre, creditos, notas }) => [
+      codigo,
+      nombre,
+      creditos,
+      '-',
+      notas[0].primera,
+      notas[0].segunda,
+      notas[0].tercera,
+      notas[0].cuarta,
+      notas[0].promedio,
+    ]);
 
   return (
     <MainLayout>
@@ -148,41 +164,20 @@ const Subjects = () => {
             margin: '8px 0px 0px',
           }}
         >
-          <button className="create-post-btn">Calculadora de notas</button>
-        </div>
-
-        <div style={{ border: '1px solid', marginTop: '8px' }}>
-          <h4>Calculadora de notas</h4>
-          <table style={{ width: '100%' }}>
-            <thead>
-              <tr>
-                <th>Codigo</th>
-                <th>Nombre</th>
-                <th>Creditos</th>
-                <th>Semestre</th>
-                <th>1P</th>
-                <th>2P</th>
-                <th>3P</th>
-                <th>EX</th>
-                <th>DEF</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1121231</td>
-                <td>ARQUITECTURA PC</td>
-                <td>3</td>
-                <td>7</td>
-                <td>3.1</td>
-                <td>1.9</td>
-                <td>3.4</td>
-                <td>1.9</td>
-                <td>3.0</td>
-              </tr>
-            </tbody>
-          </table>
+          <button
+            onClick={() => setShowCalculator(!showCalculator)}
+            className="create-post-btn"
+            disabled={subjects.length < 1}
+          >
+            Calculadora de notas
+          </button>
         </div>
       </Segment>
+      {showCalculator && (
+        <Segment title="Calculadora de notas">
+          <Calculator subjects={formatSubjects()}></Calculator>
+        </Segment>
+      )}
     </MainLayout>
   );
 };

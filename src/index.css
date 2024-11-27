@@ -310,6 +310,7 @@ tr:nth-of-type(odd) {
   background-color: #45a049;
 }
 
+button:disabled,
 .form-button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
@@ -332,4 +333,8 @@ tr:nth-of-type(odd) {
   border-bottom: 1px solid #ccc;
   padding-bottom: 6px;
   margin-bottom: 6px;
+}
+
+.def-col {
+  background-color: #45a049;
 }
